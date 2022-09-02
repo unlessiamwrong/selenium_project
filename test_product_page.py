@@ -14,7 +14,7 @@ def book_coders_at_work_page_link():
 
 @pytest.fixture
 def book_coders_at_work_promo_page_link():
-    return "http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/?promo=newYear2019"
+    return "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
 
 
 @pytest.fixture
@@ -108,8 +108,11 @@ class TestUserAddToBasketFromProductPage:
 
 
 @pytest.mark.need_review
-def test_guest_can_add_product_to_basket(browser, book_coders_at_work_promo_page_link):
-    link = book_coders_at_work_promo_page_link
+@pytest.mark.parametrize('link', [0, 1, 2, 3, 4, 5, 6,
+                                  pytest.param(7, marks=pytest.mark.xfail(reason='known bug')),
+                                  8, 9])
+def test_guest_can_add_product_to_basket(browser, link):
+    link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{link}"
     page = ProductPage(browser, link)
     page.open()
     page.should_be_add_to_basket_button()
