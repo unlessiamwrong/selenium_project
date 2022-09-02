@@ -24,12 +24,20 @@ class ProductPage(BasePage):
 
     def should_be_same_book_name(self, item_name):
         book_name = item_name
-        assert self.is_element_present(*ProductPageLocators.ADDING_INFO), 'Adding info is not presented'
+        assert self.is_element_present(*ProductPageLocators.ADDING_INFO), 'Success message is not presented'
         info_book_name = self.browser.find_element(*ProductPageLocators.ADDING_INFO).text
         assert book_name == info_book_name, 'Books names are not the same'
 
     def should_be_same_price(self, item_price):
         book_price = item_price
-        assert self.is_element_present(*ProductPageLocators.CART_VALUE_INFO), 'Cart value is not presented'
+        assert self.is_element_present(*ProductPageLocators.CART_VALUE_INFO), 'Cart value message is not presented'
         info_cart_value = self.browser.find_element(*ProductPageLocators.CART_VALUE_INFO).text
         assert book_price == info_cart_value, 'Prices are not the same'
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message should disappear, but didn't"

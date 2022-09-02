@@ -5,6 +5,11 @@ class MainPageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
 
+class BasePageLocators:
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+
+
 class LoginPageLocators:
     LOGIN_USERNAME = (By.CSS_SELECTOR, "#id_login-username")
     LOGIN_PASSWORD = (By.CSS_SELECTOR, "#id_login-password")
@@ -21,3 +26,4 @@ class ProductPageLocators:
     BOOK_PRICE = (By.CSS_SELECTOR, ".product_main .price_color")
     ADDING_INFO = (By.CSS_SELECTOR, "div.alertinner strong")
     CART_VALUE_INFO = (By.CSS_SELECTOR, ".alert-info .alertinner strong")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert-success")
